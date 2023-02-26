@@ -1,5 +1,6 @@
 ﻿using BlazorVinyls.Server.Data;
 using BlazorVinyls.Server.Repository;
+using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorVinyls.Server.Controllers

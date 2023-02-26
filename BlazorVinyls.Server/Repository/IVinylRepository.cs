@@ -1,4 +1,5 @@
 ﻿using BlazorVinyls.Server.Data;
+using Entities.Models;
 
 namespace BlazorVinyls.Server.Repository
 {
