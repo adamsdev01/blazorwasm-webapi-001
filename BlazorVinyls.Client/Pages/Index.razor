@@ -1,9 +1,15 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+<Home Title="Welcome to the BlazorVinyls.Client application." @attributes="AdditionalAttributes">
+    <WishListContent>
+        Check out my <a href="https://www.amazon.com" target="_blank">wishlist</a>
+    </WishListContent>
+</Home>
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+@code{
+    public Dictionary<string, object> AdditionalAttributes { get; set; } = new Dictionary<string, object>
+    {
+        { "src", "/assets/icon-192.png" },
+        { "alt", "test image for the Home component" }
+    };
+}

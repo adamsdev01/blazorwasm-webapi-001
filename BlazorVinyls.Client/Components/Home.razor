@@ -1,0 +1,18 @@
+﻿<div style="text-align:center">
+    <h1>@Title</h1>
+    <p>@WishListContent</p>
+    <p>
+        <img @attributes="AdditionalAttributes" class="img-fluid" />
+    </p>
+</div>
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> AdditionalAttributes { get; set; }
+
+    [Parameter]
+    public RenderFragment WishListContent { get; set; }
+}
