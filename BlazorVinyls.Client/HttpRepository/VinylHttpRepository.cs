@@ -47,15 +47,16 @@ namespace BlazorVinyls.Client.HttpRepository
 
         public async Task<string> UploadVinylImage(MultipartFormDataContent content)
         {
-            var postResult = await httpClient.PostAsync("upload", content);
+            var postResult = await httpClient.PostAsync("https://localhost:7092/api/upload", content);
             var postContent = await postResult.Content.ReadAsStringAsync();
+
             if (!postResult.IsSuccessStatusCode)
             {
                 throw new ApplicationException(postContent);
             }
             else
             {
-                var imgUrl = Path.Combine("https://localhost:5011/", postContent);
+                var imgUrl = Path.Combine("https://localhost:7092/", postContent);
                 return imgUrl;
             }
         }

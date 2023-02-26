@@ -27,7 +27,7 @@
     <div class="form-group row">
         <label for="image" class="col-md-2 col-form-label">Upload Vinyl Cover</label>
         <div class="col-md-6">
-            <InputText id="image" class="form-control" @bind-Value="vinyl.ImageUrl" />
+            <ImageUpload OnChange="AssignImageUrl"/>
         </div>
     </div>
     <br />
@@ -42,6 +42,7 @@
 @code {
     private Vinyl vinyl = new Vinyl();
     private SuccessNotification? _notification;
+    private void AssignImageUrl(string imgUrl) => vinyl.ImageUrl = imgUrl;
 
     [Inject]
     public IVinylHttpRepository VinylRepository { get; set; }
