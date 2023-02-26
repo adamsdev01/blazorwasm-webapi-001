@@ -4,23 +4,30 @@
 
 <EditForm Model="vinyl" OnSubmit="Create" class="card card-body bg-light mt-5 col-md-10">
     <div class="form-group row">
-        <label for="name" class="col-md-2 col-form-label">Album Name</label>
+        <label for="albumName" class="col-md-2 col-form-label">Album Name</label>
         <div class="col-md-6">
-            <InputText id="name" class="form-control" @bind-Value="vinyl.AlbumName" />
+            <InputText id="albumName" class="form-control" @bind-Value="vinyl.AlbumName" />
         </div>
     </div>
     <br />
     <div class="form-group row">
-        <label for="supplier" class="col-md-2 col-form-label">Artist Name</label>
+        <label for="artistFirstName" class="col-md-2 col-form-label">Artist Name</label>
         <div class="col-md-6">
-            <InputText id="supplier" class="form-control" @bind-Value="vinyl.ArtistFName" />
+            <InputText id="artistFirstName" class="form-control" @bind-Value="vinyl.ArtistFName" />
         </div>
     </div>
     <br />
     <div class="form-group row">
-        <label for="supplier" class="col-md-2 col-form-label">Artist Last Name (if applicable):</label>
+        <label for="artistLastName" class="col-md-2 col-form-label">Artist Last Name (if applicable):</label>
         <div class="col-md-6">
-            <InputText id="supplier" class="form-control" @bind-Value="vinyl.ArtistLName" />
+            <InputText id="artistLastName" class="form-control" @bind-Value="vinyl.ArtistLName" />
+        </div>
+    </div>
+    <br />
+    <div class="form-group row">
+        <label for="genre" class="col-md-2 col-form-label">Genre</label>
+        <div class="col-md-6">
+            <InputText id="genre" class="form-control" @bind-Value="vinyl.Genre" />
         </div>
     </div>
     <br />

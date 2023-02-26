@@ -16,6 +16,7 @@ namespace Entities.Models
         public string? ImageUrl { get; set; }
         public string? Review { get; set; }
         public DateTime? InsertedDate { get; set; }
+        public string? Genre { get; set; }
 
     }
 }
