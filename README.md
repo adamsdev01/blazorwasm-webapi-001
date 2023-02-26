@@ -2,7 +2,7 @@
 ### This static Blazor web application is hosted on Azure: [check out my collection!](https://www.google.com)
 ## Stack
 - Blazor WASM
-- Blazor Server
+- Blazor Server - Web API
 - Azure for hosting
 - (Database) Azure Data Studio
 - .NET 6
