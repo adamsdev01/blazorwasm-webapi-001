@@ -32,7 +32,7 @@ namespace BlazorVinyls.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Vinyl>> CreateViyl(Vinyl vinyl)
+        public async Task<ActionResult<Vinyl>> CreateVinyl(Vinyl vinyl)
         {
             try
             {

@@ -16,6 +16,8 @@ namespace BlazorVinyls.Server.Repository
 
         public async Task<Vinyl> CreateVinyl(Vinyl vinyl)
         {
+            vinyl.InsertedDate = DateTime.Now;
+
             var result = await dbContext.Vinyls.AddAsync(vinyl);
             await dbContext.SaveChangesAsync();
             return result.Entity;
