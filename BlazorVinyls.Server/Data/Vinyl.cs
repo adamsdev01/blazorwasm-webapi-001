@@ -9,7 +9,7 @@
         public string? ComingSoon { get; set; }
         public string? ImageUrl { get; set; }
         public string? Review { get; set; }
-        public DateTime InsertedDate { get; set; }
+        public DateTime? InsertedDate { get; set; }
 
     }
 }

@@ -24,5 +24,41 @@ namespace BlazorVinyls.Server.Data
             }
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Vinyl>(entity =>
+            {
+                entity.HasKey(e => e.UniqueId)
+                    .HasName("PK_UniqueId");
+
+                entity.Property(e => e.AlbumName)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ArtistFName)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ArtistLName)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ComingSoon)
+                    .HasMaxLength(1)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ImageUrl)
+                    .HasColumnType("nvarchar(max)")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Review)
+                   .HasColumnType("nvarchar(max)")
+                   .IsUnicode(false);
+
+                entity.Property(e => e.InsertedDate)
+                   .HasColumnType("datetime");
+            });
+        }
+
     }
 }

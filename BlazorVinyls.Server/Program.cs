@@ -1,4 +1,5 @@
 using BlazorVinyls.Server.Data;
+using BlazorVinyls.Server.Repository;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddControllers();
+builder.Services.AddScoped<IVinylRepository, VinylRepository>();
 
 // Add ConnectionString
 builder.Services.AddDbContext<VinylContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
