@@ -1,0 +1,39 @@
+﻿@page "/vinyls"
+
+<div class="row">
+    <div class="col-md-10">
+        @*Place for search and sort*@
+    </div>
+    <div class="col-md-2">
+        <a href="/createVinyl">Add Vinyl</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        @*Place for products*@
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        @*Place for pagination*@
+    </div>
+</div>
+
+@code {
+
+    public List<Vinyl> VinylsList { get; set; } = new List<Vinyl>();
+
+    [Inject]
+    public IVinylHttpRepository VinylRepository { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        VinylsList = await VinylRepository.GetVinyls();
+        //just for testing
+        foreach (var vinyl in VinylsList)
+        {
+            Console.WriteLine(vinyl.AlbumName);
+        }
+    }
+
+}
