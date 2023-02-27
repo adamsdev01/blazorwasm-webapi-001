@@ -1,5 +1,5 @@
 # Vinyl Library Collection
-### This static Blazor web application is hosted on Azure: [check out my collection!](https://www.google.com)
+### This static Blazor web application is hosted on Azure: [check out my collection!](https://vinyl-collection-blazorwasm.azurewebsites.net/staticVinyls)
 ## Stack
 - Blazor WASM
 - Blazor Server - Web API
