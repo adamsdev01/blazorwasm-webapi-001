@@ -1,4 +1,6 @@
 ﻿@page "/staticVinyls"
+
+
 <h3 style="text-align:center"><b>VINYL COLLECTION</b></h3>
 
 @if (VinylsList == null)
@@ -28,91 +30,25 @@ else
 
 }
 
-@*    <img src="/StaticFiles/Images/20230224_215959.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220013.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220022.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220045.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220758.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220718.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220045.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220111.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220123.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220143.jpg" asp-append-version="true" width="300px"/>
-    <img src="/staticfiles/images/20230224_220207.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220224.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220240.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220252.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220310.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220323.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220332.jpg" asp-append-version="true" width="300px"/>
-    <img src="/staticfiles/images/20230224_220342.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220349.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220406.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220435.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220503.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220515.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220520.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220533.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220642.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220702.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220746.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220827.jpg" asp-append-version="true" width="300px" />
-    <img src="/staticfiles/images/20230224_220732.jpg" asp-append-version="true" width="300px"/>
-*@
-@*</div>
-*@
 @code {
 
     public IEnumerable<Vinyl>? VinylsList { get; set; }
 
-    private void InitializeItems()
+    protected async override Task OnInitializedAsync()
     {
-        var e1 = new Vinyl
-        {
-            UniqueId = 1,
-            AlbumName = "Okonski",
-            ArtistFName = "Magnolia",
-            ArtistLName = "",
-            Genre = "Jazz",
-            InsertedDate = DateTime.Now,
-            ImageUrl = "/StaticFiles/Images/20230224_215959.jpg"
-            
-        };
-
-        var e2 = new Vinyl
-        {
-            UniqueId = 2,
-            AlbumName = "Introducing...",
-            ArtistFName = "Aaron",
-            ArtistLName = "Frazer",
-                Genre = "Alternative/Indie, Rock",
-            ImageUrl = "/staticfiles/images/20230224_220013.jpg"
-        };
-
-        var e3 = new Vinyl
-        {
-            UniqueId = 3,
-            AlbumName = "Whipped Cream  & Other Delights",
-            ArtistFName = "Herb Alpert's Tijuana Brass",
-            Genre = "Jazz",
-            ImageUrl = "/staticfiles/images/20230224_220022.jpg"
-        };
-
-        var e4 = new Vinyl
-        {
-            UniqueId = 4,
-            AlbumName = "Whipped Cream  & Other Delights",
-            ArtistFName = "Herb Alpert's Tijuana Brass",
-            Genre = "Jazz",
-            ImageUrl = "/staticfiles/images/20230224_220022.jpg"
-        };
-        VinylsList = new List<Vinyl> { e1, e2, e3, e4 };
+        await CallAPI();
     }
 
-    protected override Task OnInitializedAsync()
+    async Task CallAPI()
     {
-        InitializeItems();
-
-        return base.OnInitializedAsync();
+        using (var httpClient = new HttpClient())
+        {
+            using (var response = await httpClient.GetAsync("https://adamsdev01.github.io/api/records.json"))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                VinylsList = JsonConvert.DeserializeObject<List<Vinyl>>(apiResponse);
+            }
+        }
     }
+
 }

@@ -9,7 +9,9 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
+// web api
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7092/api/") });
+
 builder.Services.AddScoped<IVinylHttpRepository, VinylHttpRepository>();
 builder.Services.AddFileReaderService(o => o.UseWasmSharedBuffer = true);
 

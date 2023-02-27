@@ -1,26 +1,37 @@
 ﻿@page "/vinyls"
+<h3 style="text-align:center"><b>VINYL COLLECTION</b></h3>
 
-@foreach (var vinyl in VinylsList)
+@if(VinylsList == null)
+{
+    <p>Loading ...</p>
+
+}
+else
 {
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="@vinyl.ImageUrl" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Album: @vinyl.AlbumName</h5>
-                        <p class="card-text">Artist: @vinyl.ArtistFName @vinyl.ArtistLName</p>
-                        <p class="card-text">Genre: @vinyl.Genre</p>
+            @foreach (var vinyl in VinylsList)
+            {
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="@vinyl.ImageUrl" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">@vinyl.AlbumName</h5>
+                            <p class="card-text">By: @vinyl.ArtistFName @vinyl.ArtistLName</p>
+                            <p class="card-text">Genre: @vinyl.Genre</p>
+                        </div>
                     </div>
+                    <div class="card-footer" style="width: 18rem;">
+                        <small class="text-muted">Last updated at @vinyl.InsertedDate.GetValueOrDefault().ToShortTimeString()</small>
+                    </div>
+                    <br />
                 </div>
-                <div class="card-footer" style="width: 18rem;">
-                    <small class="text-muted">Last updated at @vinyl.InsertedDate.GetValueOrDefault().ToShortTimeString()</small>
-                </div>
-                <br />
-            </div>
+            }
         </div>
     </div>
+    
 }
+
 
 
 @code {
