@@ -1,8 +1,34 @@
 ﻿@page "/staticVinyls"
 <h3 style="text-align:center"><b>VINYL COLLECTION</b></h3>
 
-<div>
-    <img src="/StaticFiles/Images/20230224_215959.jpg" asp-append-version="true" width="300px" />
+@if (VinylsList == null)
+{
+    <p>Loading ...</p>
+}
+else
+{
+    <div class="row">
+        @foreach(var item in VinylsList)
+        {
+            <div class="column">
+                <div class="card">
+                    <img src="@item.ImageUrl" alt="Vinyl" style="width:100%">
+                    <div class="container">
+                        <h3>@item.AlbumName</h3>
+                        <p class="title">By @item.ArtistFName @item.ArtistLName</p>
+                        <p>@item.Genre</p>
+                        <p>Last Listen: @DateTime.Now.ToString("MMM dd yyyy")</p>
+                    </div>
+                </div>
+              
+            </div>
+        }
+
+    </div>
+
+}
+
+@*    <img src="/StaticFiles/Images/20230224_215959.jpg" asp-append-version="true" width="300px" />
     <img src="/staticfiles/images/20230224_220013.jpg" asp-append-version="true" width="300px" />
     <img src="/staticfiles/images/20230224_220022.jpg" asp-append-version="true" width="300px" />
     <img src="/staticfiles/images/20230224_220045.jpg" asp-append-version="true" width="300px" />
@@ -32,8 +58,62 @@
     <img src="/staticfiles/images/20230224_220746.jpg" asp-append-version="true" width="300px" />
     <img src="/staticfiles/images/20230224_220827.jpg" asp-append-version="true" width="300px" />
     <img src="/staticfiles/images/20230224_220732.jpg" asp-append-version="true" width="300px"/>
-</div>
-
+*@
+@*</div>
+*@
 @code {
 
+    //public Vinyl vinyl { get; set; }
+    public IEnumerable<Vinyl>? VinylsList { get; set; }
+
+    private void InitializeItems()
+    {
+        var e1 = new Vinyl
+        {
+            UniqueId = 1,
+            AlbumName = "Okonski",
+            ArtistFName = "Magnolia",
+            ArtistLName = "",
+            Genre = "Jazz",
+            InsertedDate = DateTime.Now,
+            ImageUrl = "/StaticFiles/Images/20230224_215959.jpg"
+            
+        };
+
+        var e2 = new Vinyl
+        {
+            UniqueId = 2,
+            AlbumName = "Introducing...",
+            ArtistFName = "Aaron",
+            ArtistLName = "Frazer",
+                Genre = "Alternative/Indie, Rock",
+            ImageUrl = "/staticfiles/images/20230224_220013.jpg"
+        };
+
+        var e3 = new Vinyl
+        {
+            UniqueId = 3,
+            AlbumName = "Whipped Cream  & Other Delights",
+            ArtistFName = "Herb Alpert's Tijuana Brass",
+            Genre = "Jazz",
+            ImageUrl = "/staticfiles/images/20230224_220022.jpg"
+        };
+
+        var e4 = new Vinyl
+        {
+            UniqueId = 4,
+            AlbumName = "Whipped Cream  & Other Delights",
+            ArtistFName = "Herb Alpert's Tijuana Brass",
+            Genre = "Jazz",
+            ImageUrl = "/staticfiles/images/20230224_220022.jpg"
+        };
+        VinylsList = new List<Vinyl> { e1, e2, e3, e4 };
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+        InitializeItems();
+
+        return base.OnInitializedAsync();
+    }
 }
