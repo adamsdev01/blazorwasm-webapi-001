@@ -14,3 +14,5 @@
 - Display personal vinyl collection
 - Upload Images using WebAPI
 - Static Web App
+- JSON Rest API
+- Blazor WASM uses [JSON Rest API](https://adamsdev01.github.io/api/records.json)
